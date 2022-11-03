@@ -8,8 +8,7 @@ from .models import trimestre
 # Create your views here.
 
 
-def home(request):
-    return render(request, 'home.html')
+
 
 
 def signup(request):
@@ -25,7 +24,7 @@ def signup(request):
                                                 password=request.POST['password1'])
                 user.save()
                 login(request, user)
-                return redirect('task')
+                return redirect('/')
             except IntegrityError:
                 return render(request, 'signup.html', {
                     'form': UserCreationForm,
@@ -46,7 +45,7 @@ def trimestr(request):
 
 def cerrarSesion(request):
     logout(request)
-    return redirect('home')
+    return redirect('/')
 
 
 def ingresar(request):
@@ -65,4 +64,4 @@ def ingresar(request):
         })
         else:
             login(request, user)
-            return redirect('task')
+            return redirect('/trimestre')
