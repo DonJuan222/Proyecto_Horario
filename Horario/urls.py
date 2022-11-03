@@ -4,10 +4,10 @@ from home import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
+    path('', views.ingresar, name='login'),
     path('signup/', views.signup, name='signup'),
     path('trimestre/', views.trimestr, name='trimestre'),
     path('logout/', views.cerrarSesion, name='logout'),
-    path('login/', views.ingresar, name='login')
+    
 
 ]
