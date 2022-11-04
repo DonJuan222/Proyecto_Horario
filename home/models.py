@@ -53,6 +53,6 @@ class instructor(models.Model):
     apellido=models.CharField(max_length=200,blank=False,null=False, verbose_name='Apellido de instructor')
 
     class Meta:
-        verbose_name='Instrucutor'
+        verbose_name='Instructor'
         verbose_name_plural='Instructores'
-        ordering=['nombre']
+        

@@ -1,0 +1,22 @@
+{%  extends 'base.html' %}
+
+
+
+{% block content %}
+
+<h2><strong></strong></h2>
+<div class="row">
+
+    {% for programa_Formacion in programa %}
+
+    <div class="col-lg-2">
+        <div class="box-element product">
+            <h2><strong>{{programa_Formacion.nombre_Programa}}</strong></h2>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+
+{%  endblock %}
