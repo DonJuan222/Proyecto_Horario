@@ -2,18 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-class trimestre(models.Model):
-    nom_Trimestres=models.CharField(max_length=200,blank=False,null=False, verbose_name='Nombre del Trimestre')
-
-    class Meta:
-        verbose_name='Trimestre'
-        verbose_name_plural='Trimestres'
-
-
-    def __str__(self):
-        return self.nom_Trimestres
-
-
 class municipio(models.Model):
     nom_municipio=models.CharField(max_length=200,blank=False,null=False, verbose_name='Nombre del Municipio')
 

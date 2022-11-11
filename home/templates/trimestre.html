@@ -5,12 +5,14 @@
 
 		{% for trimestre in Trimestres %}
 
-		<div class="col-lg-4">
-			<div class="box-element product">
-				<h2><strong>{{trimestre.nom_Trimestres}}</strong></h2>
-                <img src="/static/images/sena.png" style="width:100px;height:100px;">
-			</div>
-		</div>
+		<a href="/programa/">
+			<div class="col-lg-4">
+				<div class="box-element product">
+					<h2><strong>{{trimestre.nom_Trimestres}}</strong></h2>
+					<img src="/static/images/sena.png" style="width:100px;height:100px;">
+				</div>
+			</div> 
+		</a>
 
 		{% endfor %}
 	</div>

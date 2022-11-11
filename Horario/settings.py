@@ -68,7 +68,7 @@ WSGI_APPLICATION = 'Horario.wsgi.application'
 DATABASES = {
 'default':{
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'DB_Horario',
+        'NAME': 'horario_bd',
         'USER': 'root',
         'PASSWORD': 'SENAsamaria12',
         'HOST': '127.0.0.1',

@@ -3,12 +3,10 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .models import trimestre
+
+
 
 # Create your views here.
-
-
-
 
 
 def signup(request):
@@ -36,13 +34,6 @@ def signup(request):
         })
 
 
-def trimestr(request):
-    Trimestres = trimestre.objects.all()
-    return render(request, 'trimestre.html', {
-        'Trimestres': Trimestres
-    })
-
-
 def cerrarSesion(request):
     logout(request)
     return redirect('/')
@@ -64,4 +55,18 @@ def ingresar(request):
         })
         else:
             login(request, user)
-            return redirect('/trimestre')
+            return redirect('/')
+
+
+def home(request):
+    Trimestre_Uno = trimestre_uno.objects.all()
+    # Trimestre_Dos = trimestre_dos.objects.all()
+    # Trimestre_Tres = trimestre_tres.objects.all()
+    # Trimestre_Cuatro = trimestre_cuatro.objects.all()
+    return render(request, 'home.html', {
+        'Trimestre_Uno': Trimestre_Uno
+        # 'Trimestre_Dos': Trimestre_Dos,
+        # 'Trimestre_Tres': Trimestre_Tres,
+        # 'Trimestre_Cuatro': Trimestre_Cuatro,
+
+    })
