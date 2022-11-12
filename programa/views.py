@@ -1,5 +1,8 @@
-from django.shortcuts import render
-from .models import programa_Formacion,trimestre_uno,trimestre_dos,trimestre_tres,trimestre_cuatro
+from django.shortcuts import render,redirect, get_object_or_404
+from django.db.models import Q
+from .models import programa_Formacion
+from .filters import filtrarTrimestre
+from .forms import FormAmbiente,FormCentro,FormMunicipio,FormPrograma
 
 
 # def programa_formacion(request, programa_id):
@@ -8,22 +11,61 @@ from .models import programa_Formacion,trimestre_uno,trimestre_dos,trimestre_tre
 #         'programa': programa
 #     })
 
-def programa_formacion(request):
+def mostrar_programa_formacion(request):
+    busqueda=request.POST.get("buscar")
     programa = programa_Formacion.objects.all()
-    return render(request, 'programa_f.html', {
-        'programa': programa
+
+    if busqueda:
+        programa=programa_Formacion.objects.filter(
+            Q(ficha__icontains = busqueda)|
+            Q(nombre_Programa__icontains = busqueda)|
+            Q(trimestre__icontains = busqueda)
+        ).distinct()
+
+    return render(request, 'programa_f.html',
+    {'programa': programa} )
+
+
+def filtrar_programa_formacion(request):
+    filtro=filtrarTrimestre(request.GET, queryset=programa_Formacion.objects.all())
+    return render(request, 'programa_f.html',
+    {'filtro':filtro} )
+
+
+def create_Programa(request):
+    if request.method == 'GET':
+        return render(request, 'createPrograma.html',{
+        'form': FormPrograma
     })
+    else:
+        try:
+            form=FormPrograma(request.POST)
+            new_programa=form.save(commit=False)
+            new_programa.save()
+            return redirect('programa')
 
+        except ValueError:
+            return render (request, 'createPrograma.html',{
+                'form': FormPrograma,
+                'error': 'Por favor proporciona los datos'
+            })
 
-def home(request):
-    Trimestre_Uno = trimestre_uno.objects.all()
-    Trimestre_Dos = trimestre_dos.objects.all()
-    Trimestre_Tres = trimestre_tres.objects.all()
-    Trimestre_Cuatro = trimestre_cuatro.objects.all()
-    return render(request, 'home.html', {
-        'Trimestre_Uno': Trimestre_Uno,
-        'Trimestre_Dos': Trimestre_Dos,
-        'Trimestre_Tres': Trimestre_Tres,
-        'Trimestre_Cuatro': Trimestre_Cuatro,
+def editarPrograma(request, programa_id):
+    programa=get_object_or_404(programa_Formacion, id=programa_id)
 
-    })
+    data={
+        'form': FormPrograma(instance=programa)
+    }
+
+    if request.method== 'POST':
+        formulario=FormPrograma(data=request.POST, instance=programa, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('programa')
+        data['form']=formulario    
+    return render(request, 'programaUpdate.html', data)
+
+def eliminarPrograma(request, programa_id):
+    programa=get_object_or_404(programa_Formacion, id=programa_id)
+    programa.delete()
+    return redirect('programa')

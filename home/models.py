@@ -35,10 +35,10 @@ class horario(models.Model):
         verbose_name_plural='Horarios'
 
 
-
 class instructor(models.Model):
     nombre=models.CharField(max_length=200,blank=False,null=False, verbose_name='Nombre del Instructor')
     apellido=models.CharField(max_length=200,blank=False,null=False, verbose_name='Apellido de instructor')
+    tipo_Instructor=models.CharField(max_length=200,blank=False,null=False, verbose_name='Tipo de instructor')
 
     class Meta:
         verbose_name='Instructor'

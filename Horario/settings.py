@@ -29,6 +29,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'programa',
+
+    
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -68,7 +71,7 @@ WSGI_APPLICATION = 'Horario.wsgi.application'
 DATABASES = {
 'default':{
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'horario_bd',
+        'NAME': 'horario_db',
         'USER': 'root',
         'PASSWORD': 'SENAsamaria12',
         'HOST': '127.0.0.1',

@@ -2,9 +2,38 @@
 
 
 
+
 {% block content %}
 
-<h2><strong></strong></h2>
+
+<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+method="POST">
+  {% csrf_token %}
+  <div class="input-group">
+    <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." name="buscar" value="{{ request.POST.buscar }}">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="submit">
+        <i class="fas fa-search fa-sm"></i>
+      </button>
+    </div>
+  </div>
+</form>
+
+
+<!-- <div class="row">
+    <div class="col">
+        <div class="card card-body">
+            <form method="get">
+                {{ filtro.form }}
+            </form>
+            <button class="btn btn-secondary" type="submit">Buscar</button>
+
+        </div>
+
+    </div>
+
+</div> -->
+
 <div class="row">
 
     {% for programa_Formacion in programa %}
@@ -12,7 +41,12 @@
     <div class="col-lg-2">
         <div class="box-element product">
             <h2><strong>{{programa_Formacion.nombre_Programa}}</strong></h2>
-        </div>
+            <h2><strong>{{programa_Formacion.trimestre}}</strong></h2>
+            <td><a href="{% url 'editarPrograma' programa_Formacion.id %}" class="btn btn-secondary btn-sm">Editar</a>
+							<a href="{% url 'eliminarPrograma' programa_Formacion.id %}" class="btn btn-danger btn-sm">Eliminar</a></td>
+						
+        
+          </div>
     </div>
 
     {% endfor %}

@@ -8,6 +8,11 @@ from django.db import IntegrityError
 
 # Create your views here.
 
+def home(request):
+    return render(request, 'home.html')
+
+
+
 
 def signup(request):
 
@@ -56,17 +61,3 @@ def ingresar(request):
         else:
             login(request, user)
             return redirect('/')
-
-
-def home(request):
-    Trimestre_Uno = trimestre_uno.objects.all()
-    # Trimestre_Dos = trimestre_dos.objects.all()
-    # Trimestre_Tres = trimestre_tres.objects.all()
-    # Trimestre_Cuatro = trimestre_cuatro.objects.all()
-    return render(request, 'home.html', {
-        'Trimestre_Uno': Trimestre_Uno
-        # 'Trimestre_Dos': Trimestre_Dos,
-        # 'Trimestre_Tres': Trimestre_Tres,
-        # 'Trimestre_Cuatro': Trimestre_Cuatro,
-
-    })

@@ -1,68 +1,33 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
 
-<div class="row">
+<main class="container py-5">
+    <section class="card card-body">
+        <h1 class="display-1 text-center"> Pagina Principal</h1>
+        
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae eius eum obcaecati, accusantium,
+            facilis quia sapiente assumenda excepturi voluptates dignissimos magnam natus libero fugiat possimus veniam?
+            Alias officiis, dolorem quos non laboriosam cumque, est ea laborum impedit temporibus aliquam vel eligendi
+            ab ipsum?
+            Est, nesciunt veritatis pariatur aut illum enim ipsam possimus odit saepe eaque. Explicabo veniam aperiam
+            dolorem
+            non
+            quaerat exercitationem quis deleniti a! Magni dignissimos obcaecati mollitia eaque laborum. Optio illum
+            provident,
+            veritatis et veniam quam consequuntur sunt expedita vel quae laborum est voluptate quaerat reprehenderit?
+            Minus excepturi non numquam eaque iure facilis fugit, odit alias dolores autem?</p>
 
-	{% for trimestre_uno in Trimestre_Uno %}
-
-	<a href="/programa/">
-	<div class="col-lg-3">
-		<div class="box-element product">
-			<h2><strong>{{trimestre_uno.nom_Trimestres_Uno}}</strong></h2>
-			<img src="/static/images/sena.png" style="width:100px;height:100px;">
-		</div>
-	</div>
-	</a>
-
-	{% endfor %}
-
-
-	<div class="row">
-	
-		{% for trimestre_dos in Trimestre_Dos %}
-	
-		<a href="/programa/">
-		<div class="col-lg-3">
-			<div class="box-element product">
-				<h2><strong>{{trimestre_dos.nom_Trimestres_Dos}}</strong></h2>
-				<img src="/static/images/sena.png" style="width:100px;height:100px;">
-			</div>
-		</div>
-		</a>
-	
-		{% endfor %}
+            <div class="text-center">
+                {% if user.is_authenticated %}
+                <a class="btn btn-dark" href="/programa/">Ver los programas</a>
+                {% endif %}
+                
+            </div>
 
 
-		<div class="row">
-		
-			{% for trimestre_tres in Trimestre_Tres %}
-		
-			<a href="/programa/">
-			<div class="col-lg-3">
-				<div class="box-element product">
-					<h2><strong>{{trimestre_tres.nom_Trimestres_Tres}}</strong></h2>
-					<img src="/static/images/sena.png" style="width:100px;height:100px;">
-				</div>
-			</div>
-			</a>
-		
-			{% endfor %}
+    </section>
 
-
-<div class="row">
-
-	{% for trimestre_cuatro in Trimestre_Cuatro %}
-
-	<a href="/programa/">
-	<div class="col-lg-3">
-		<div class="box-element product">
-			<h2><strong>{{trimestre_cuatro.nom_Trimestres_Cuatro}}</strong></h2>
-			<img src="/static/images/sena.png" style="width:100px;height:100px;">
-		</div>
-	</div>
-	</a>
-
-	{% endfor %}
-
+</main>
 {% endblock %}
