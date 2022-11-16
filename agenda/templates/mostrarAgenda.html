@@ -21,26 +21,28 @@ method="POST">
 
 <div class="row">
 
-    {% for programa_Formacion in programa %}
+    {% for agenda in agendas %}
 
     <div class="col-lg-2">
         <div class="box-element product">
-            <h2><strong>{{programa_Formacion.nombre_Programa}}</strong></h2>
-            <h2><strong>{{programa_Formacion.trimestre}}</strong></h2>
-            <h2>Centro de Formacion:<strong>{{ programa_Formacion.centro_Formacion }}</strong></h2>
-            <td><a href="{% url 'editarPrograma' programa_Formacion.id %}" class="btn btn-secondary btn-sm">Editar</a>
-							<a href="{% url 'eliminarPrograma' programa_Formacion.id %}" class="btn btn-danger btn-sm">Eliminar</a></td>
+            <h2><strong>{{agenda.programas.nombre_Programa}}</strong></h2>
+            <h2><strong>{{agenda.municipios}}</strong></h2>
+            <h2><strong>{{agenda.instructores.nombre}}</strong></h2>
+            <td><a href="{% url 'editarAgenda' agenda.id %}" class="btn btn-secondary btn-sm">Editar</a>
+							<a href="{% url 'eliminarAgenda' agenda.id %}" class="btn btn-danger btn-sm">Eliminar</a></td>
 						
+          
         
           </div>
     </div>
 
     {% endfor %}
+    
 </div>
 <br>
 <section>
   <div>
-    <a href="/programa/create/" class="btn btn-secondary btn-sm"> Crear Programa de Formacion</a>
+    <a href="/agenda/create/" class="btn btn-secondary btn-sm"> Crear Agenda</a>
   </div>
   
   </section>

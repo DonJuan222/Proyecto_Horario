@@ -28,3 +28,6 @@ class FormInstructor(ModelForm):
     class Meta:
         model = instructor
         fields ='__all__'
+
+
+
