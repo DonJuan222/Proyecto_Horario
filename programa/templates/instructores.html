@@ -1,10 +1,7 @@
 {%  extends 'base.html' %}
 
 
-
-
 {% block content %}
-
 
 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
 method="POST">
@@ -19,19 +16,20 @@ method="POST">
   </div>
 </form>
 
+
 <div class="row">
 
-    {% for programa_Formacion in programa %}
+    {% for instructor in instructores %}
 
     <div class="col-lg-2">
         <div class="box-element product">
-            <h2><strong>{{programa_Formacion.nombre_Programa}}</strong></h2>
-            <h2><strong>{{programa_Formacion.trimestre}}</strong></h2>
-            <h2>Centro de Formacion:<strong>{{ programa_Formacion.centro_Formacion }}</strong></h2>
-            <td><a href="{% url 'editarPrograma' programa_Formacion.id %}" class="btn btn-secondary btn-sm">Editar</a>
-							<a href="{% url 'eliminarPrograma' programa_Formacion.id %}" class="btn btn-danger btn-sm">Eliminar</a></td>
+            <h2><strong>{{instructor.nombre}}</strong></h2>
+            <h2><strong>{{instructor.apellido}}</strong></h2>
+            <h2><strong>{{instructor.tipo_Instructor}}</strong></h2>
+            <td><a href="{% url 'editarInstructor' instructor.id %}" class="btn btn-secondary btn-sm">Editar</a>
+							<a href="{% url 'eliminarInstructor' instructor.id %}" class="btn btn-danger btn-sm">Eliminar</a></td>
 						
-        
+           
           </div>
     </div>
 
@@ -40,7 +38,7 @@ method="POST">
 <br>
 <section>
   <div>
-    <a href="/programa/create/" class="btn btn-secondary btn-sm"> Crear Programa de Formacion</a>
+    <a href="/instructores/create/" class="btn btn-secondary btn-sm"> Crear Instructores</a>
   </div>
   
   </section>

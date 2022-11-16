@@ -23,3 +23,11 @@ class FormCentro(ModelForm):
     class Meta:
         model = centro_Formacion
         fields ='__all__'
+
+class FormInstructor(ModelForm):
+    class Meta:
+        model = instructor
+        fields ='__all__'
+
+
+
