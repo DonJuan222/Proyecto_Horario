@@ -1,4 +1,4 @@
-{%  extends 'base.html' %}
+{% extends 'base.html' %}
 
 
 
@@ -6,43 +6,66 @@
 {% block content %}
 
 
-<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-method="POST">
+<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="POST">
   {% csrf_token %}
   <div class="input-group">
-    <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." name="buscar" value="{{ request.POST.buscar }}">
+    <input type="text" class="form-control bg-light border-0 small " placeholder="Buscar..." name="buscar"
+      value="{{ request.POST.buscar }}">
     <div class="input-group-append">
       <button class="btn btn-primary" type="submit">
-        <i class="fas fa-search fa-sm"></i>
+        <i class="fas fa-search fa-sm "></i>
       </button>
     </div>
   </div>
 </form>
 
-<div class="row">
-
-    {% for programa_Formacion in programa %}
-
-    <div class="col-lg-2">
-        <div class="box-element product">
-            <h2><strong>{{programa_Formacion.nombre_Programa}}</strong></h2>
-            <h2><strong>{{programa_Formacion.trimestre}}</strong></h2>
-            <h2>Centro de Formacion:<strong>{{ programa_Formacion.centro_Formacion }}</strong></h2>
-            <td><a href="{% url 'editarPrograma' programa_Formacion.id %}" class="btn btn-secondary btn-sm">Editar</a>
-							<a href="{% url 'eliminarPrograma' programa_Formacion.id %}" class="btn btn-danger btn-sm">Eliminar</a></td>
-						
-        
-          </div>
-    </div>
-
-    {% endfor %}
-</div>
-<br>
 <section>
   <div>
-    <a href="/programa/create/" class="btn btn-secondary btn-sm"> Crear Programa de Formacion</a>
+    <a href="/programa/create/" class="btn btn-secondary btn-sm mt-2 offset-md-2"> Crear Programa de Formacion</a>
   </div>
-  
-  </section>
 
-{%  endblock %}
+</section>
+
+<main class="container">
+  <div class="row">
+    <div class="col-md-5 offset-md-2 mt-4">
+      <table class="table table_bordered">
+        <thead>
+          <tr>
+            <td><strong>#</strong> </td>
+            <td><strong>Ficha</strong> </td>
+            <td><strong>Nombre del Programa</strong></td>
+            <td><strong>Trimestre</strong></td>
+            <td><strong>Centro de Formacion</strong></td>
+            <td><strong>Nombre del Instructor</strong></td>
+
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for programa_Formacion in programa %}
+
+          <tr>
+            <td>{{programa_Formacion.id}}</td>
+            <td>{{programa_Formacion.ficha}}</td>
+            <td>{{programa_Formacion.nombre_Programa}}</td>
+            <td>{{programa_Formacion.trimestre}}</td>
+            <td>{{programa_Formacion.id_Centro_Formacion.nombre_Centro }}</td>
+            <td>{{programa_Formacion.id_Instructor.nombre }}</td>
+
+            <td><a href="{% url 'editarPrograma' programa_Formacion.id %}" class="btn btn-secondary btn-sm">Editar</a>
+              <a href="{% url 'eliminarPrograma' programa_Formacion.id %}" class="btn btn-danger btn-sm mt-1">Eliminar</a>
+            </td>
+          </tr>
+          {% endfor %}
+        
+        </tbody>
+      </table>
+      
+    </div>
+  
+  </div>
+
+</main>
+
+{% endblock %}

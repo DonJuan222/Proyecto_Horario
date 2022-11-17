@@ -8,8 +8,6 @@ from .forms import FormAgenda
 # Create your views here.
 def mostrar_Agenda(request):
     agendas=agenda.objects.all()
-   
-
     return render(request, 'mostrarAgenda.html',
     {'agendas': agendas})
 
@@ -42,11 +40,11 @@ def editarAgenda(request, agenda_id):
         formulario=FormAgenda(data=request.POST, instance=agendas, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            return redirect('agenda')
+            return redirect('mostrar_Agenda')
         data['form']=formulario    
     return render(request, 'actualizarAgenda.html', data)
 
 def eliminarAgenda(request, agenda_id):
     agendas=get_object_or_404(agendas, id=agenda_id)
     agendas.delete()
-    return redirect('agenda')
+    return redirect('mostrar_Agenda')
