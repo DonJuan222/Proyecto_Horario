@@ -23,7 +23,7 @@ def mostrar_programa_formacion(request):
         ).distinct()
 
     return render(request, 'programa_f.html',
-    {'programa': programa} )
+    {'programa': programa})
 
 
 def filtrar_programa_formacion(request):

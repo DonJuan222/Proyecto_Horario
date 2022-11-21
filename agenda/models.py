@@ -1,22 +1,26 @@
-# from django.db import models
-from home.models import municipio
-from home.models import ambiente
+from datetime import timedelta
+from django.db import models
 from home.models import instructor
-from programa.models import centro_Formacion
 from programa.models import programa_Formacion
 
 
-# # Create your models here.
+# Create your models here.
 
 
-# class horario(models.Model):
-#     programas=models.ForeignKey(programa_Formacion, on_delete=models.CASCADE,null=False,blank=False, verbose_name='Programa de Formacion')
-#     municipios=models.ForeignKey(municipio, on_delete=models.CASCADE, null=False,blank=False, verbose_name='Municipio')
-#     ambiente=models.ForeignKey(ambiente, on_delete=models.CASCADE, null=False,blank=False, verbose_name='Ambiente')
-#     Centro=models.ForeignKey(centro_Formacion, on_delete=models.CASCADE, null=False,blank=False, verbose_name='Centro de Formacion')
-#     instructores=models.ForeignKey(instructor, on_delete=models.CASCADE, null=False,blank=False, verbose_name='Instructor')
+class agenda(models.Model):
+    cantidad_dias=models.SmallIntegerField(verbose_name='Cantidad de dias a Reservar', )
+    fecha_Creacion = models.DateTimeField(null=True,blank=True, verbose_name='Fecha de Creacion')
+    fecha_Vencimiento = models.DateTimeField(null=True,blank=True,verbose_name='Valido Hasta')
+    programa_f=models.ForeignKey(programa_Formacion, on_delete=models.CASCADE, null=False,blank=False, verbose_name='Programa')
+    instructores_f=models.ForeignKey(instructor, on_delete=models.CASCADE, null=False,blank=False, verbose_name='Instructores')
     
-#     class Meta:
+    class Meta:
 
-#         verbose_name='Agenda '
-#         verbose_name_plural='Agendas'
+        verbose_name='Agenda '
+        verbose_name_plural='Agendas'
+    
+
+
+    def save(self, *args, **kwargs):
+        self.fecha_Vencimiento = self.fecha_Creacion + timedelta(days=self.cantidad_dias)
+        super().save(*args, **kwargs)

@@ -1,13 +1,16 @@
 from django.shortcuts import render,redirect, get_object_or_404
-# from .models import agenda
+from .models import agenda
 
 
 
-# # Create your views here.
-# def mostrar_Agenda(request):
-#     agendas=agenda.objects.all()
-#     return render(request, 'mostrarAgenda.html',
-#     {'agendas': agendas})
+# Create your views here.
+def mostrar_Agenda(request):
+    agendas = agenda.objects.all()
+    return render(request, 'mostrarAgenda.html',{
+        'agendas':agendas
+    })
+    
+
 
 # def createAgenda(request):
 #     if request.method == 'GET':
