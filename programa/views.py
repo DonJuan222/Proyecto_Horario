@@ -18,8 +18,8 @@ def mostrar_programa_formacion(request):
     if busqueda:
         programa=programa_Formacion.objects.filter(
             Q(ficha__icontains = busqueda)|
-            Q(nombre_Programa__icontains = busqueda)|
-            Q(trimestre__icontains = busqueda)
+            Q(nombre_Programa__icontains = busqueda)
+           
         ).distinct()
 
     return render(request, 'programa_f.html',

@@ -4,47 +4,18 @@
 
 
 {% block content %}
-
-
-<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-method="POST">
-  {% csrf_token %}
-  <div class="input-group">
-    <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." name="buscar" value="{{ request.POST.buscar }}">
-    <div class="input-group-append">
-      <button class="btn btn-primary" type="submit">
-        <i class="fas fa-search fa-sm"></i>
-      </button>
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-8">
+        <h2>Horario</h2>
+      </div>
     </div>
   </div>
-</form>
-
-<div class="row">
-
-    {% for agenda in agendas %}
-
-    <div class="col-lg-2">
-        <div class="box-element product">
-            <h2><strong>{{agenda.programas.nombre_Programa}}</strong></h2>
-            <h2><strong>{{agenda.municipios}}</strong></h2>
-            <h2><strong>{{agenda.instructores.nombre}}</strong></h2>
-            <td><a href="{% url 'editarAgenda' agenda.id %}" class="btn btn-secondary btn-sm">Editar</a>
-							<a href="{% url 'eliminarAgenda' agenda.id %}" class="btn btn-danger btn-sm">Eliminar</a></td>
-						
-          
-        
-          </div>
-    </div>
-
-    {% endfor %}
-    
 </div>
-<br>
-<section>
-  <div>
-    <a href="/agenda/create/" class="btn btn-secondary btn-sm"> Crear Agenda</a>
-  </div>
+<div class="calendar">
   
-  </section>
+</div>
+
 
 {%  endblock %}

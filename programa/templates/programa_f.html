@@ -1,8 +1,5 @@
 {% extends 'base.html' %}
 
-
-
-
 {% block content %}
 
 
@@ -35,26 +32,33 @@
             <td><strong>#</strong> </td>
             <td><strong>Ficha</strong> </td>
             <td><strong>Nombre del Programa</strong></td>
-            <td><strong>Trimestre</strong></td>
+            <td><strong>Tipo de Programa</strong></td>
             <td><strong>Centro de Formacion</strong></td>
+            <td><strong>Municipio</strong></td>
+            <td><strong>Ambiente</strong></td>
+            <td><strong>Sede</strong></td>
             <td><strong>Nombre del Instructor</strong></td>
 
           </tr>
         </thead>
-
         <tbody>
           {% for programa_Formacion in programa %}
-
           <tr>
             <td>{{programa_Formacion.id}}</td>
             <td>{{programa_Formacion.ficha}}</td>
             <td>{{programa_Formacion.nombre_Programa}}</td>
-            <td>{{programa_Formacion.trimestre}}</td>
+            <td>{{programa_Formacion.tipo_Pograma}}</td>
             <td>{{programa_Formacion.id_Centro_Formacion.nombre_Centro }}</td>
+            <td>{{programa_Formacion.id_Centro_Formacion.id_Municipio }}</td>
+            <td>{{programa_Formacion.id_Centro_Formacion.id_Ambiente }}</td>
+            <td>{{programa_Formacion.id_Centro_Formacion.sede }}</td>
             <td>{{programa_Formacion.id_Instructor.nombre }}</td>
 
             <td><a href="{% url 'editarPrograma' programa_Formacion.id %}" class="btn btn-secondary btn-sm">Editar</a>
+              <a href="" class="btn btn-secondary btn-sm mt-1">VerHorario</a>
               <a href="{% url 'eliminarPrograma' programa_Formacion.id %}" class="btn btn-danger btn-sm mt-1">Eliminar</a>
+              
+
             </td>
           </tr>
           {% endfor %}
