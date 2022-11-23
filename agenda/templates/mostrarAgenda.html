@@ -1,48 +1,56 @@
-{%  extends 'base.html' %}
-{% load static %}
-
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'fullcalendar/lib/main.css' %}">
-{% endblock extra_css %}
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="card">
-  <div class="card-header">
-    <div class="row">
-      <div class="col-md-8">
-        <h2>Horario</h2>
-      </div>
-    </div>
+
+
+<section>
+  <div>
+    <a href="/programa/create/" class="btn btn-secondary btn-sm mt-2 offset-md-2"> Crear Programa de Formacion</a>
   </div>
-</div>
-<div id="calendar"></div>
+
+</section>
+
+<main class="container">
+  <div class="row">
+    <div class="col-md-5 offset-md-2 mt-4">
+      <table class="table table_bordered">
+        <thead>
+          <tr>
+            <td><strong>#</strong> </td>
+            <td><strong>Ficha</strong> </td>
+            <td><strong>Nombre del Programa</strong></td>
+            <td><strong>Centro de Formacion</strong></td>
+            <td><strong>Nombre del Instructor</strong></td>
+            <td><strong>Jornada</strong></td>
+            <td><strong>Inicio de Jornada</strong></td>
+            <td><strong>Finalizacion</strong></td>
+            <td><strong>Dias</strong></td>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for programa_Formacion in agendas %}
+          <tr>
+            <td>{{programa_Formacion.id}}</td>
+            <td>{{programa_Formacion.ficha}}</td>
+            <td>{{programa_Formacion.nombre_Programa}}</td>
+            <td>{{programa_Formacion.id_Centro_Formacion.nombre_Centro }}</td>
+            <td>{{programa_Formacion.id_Instructor.nombre }}</td>
+            <td>{{programa_Formacion.jornada }}</td>
+            <td>{{programa_Formacion.agenda.hora_Inicio }}</td>
+            <td>{{programa_Formacion.agenda.hora_Fin }}</td>
+            <td>{{programa_Formacion.agenda.asignacion.dias_Semana }}</td>
+            </td>
+          </tr>
+          {% endfor %}
+        
+        </tbody>
+      </table>
+      
+    </div>
   
-</div>
+  </div>
 
+</main>
 
-{%  endblock %}
-{% block extra_js %}
-<script src="{% static 'fullcalendar/lib/main.js' %}"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function(){
-        var calendarUI=document.getElementById('calendar');
-        var calendar =  new FullCalendar.Calendar(calendarUI,{
-          events:[
-            {% for agenda in agendas %}
-            {
-                title:"{{ agenda.instructores_f.nombre }}",
-                start: "{{ agenda.fecha_Creacion | date:"Y-md-d" }}",
-                end: "{{ agenda.fecha_Vencimiento | date:"Y-md-d" }}",
-             
-                
-            },
-		{% endfor %}
-    ]
-           
-          
-    });
-    calendar.render();
-});
-</script>
-{% endblock extra_js %}
+{% endblock %}

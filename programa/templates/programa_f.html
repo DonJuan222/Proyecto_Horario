@@ -55,7 +55,7 @@
             <td>{{programa_Formacion.id_Instructor.nombre }}</td>
 
             <td><a href="{% url 'editarPrograma' programa_Formacion.id %}" class="btn btn-secondary btn-sm">Editar</a>
-              <a href="" class="btn btn-secondary btn-sm mt-1">VerHorario</a>
+              <a href="{% url 'more_Agenda' programa_Formacion.id %}" class="btn btn-secondary btn-sm mt-1">VerHorario</a>
               <a href="{% url 'eliminarPrograma' programa_Formacion.id %}" class="btn btn-danger btn-sm mt-1">Eliminar</a>
               
 

@@ -1,11 +1,12 @@
-from django.shortcuts import render,redirect, get_object_or_404
-from .models import agenda
+from django.shortcuts import render, get_object_or_404
+from programa.models import  programa_Formacion
 
 
 
 # Create your views here.
-def mostrar_Agenda(request):
-    agendas = agenda.objects.all()
+def more_Agenda(request, agenda_id):
+    agendas=get_object_or_404(programa_Formacion, id=agenda_id)
+    agendas=programa_Formacion.objects.filter(id=agenda_id).order_by('id')
     return render(request, 'mostrarAgenda.html',{
         'agendas':agendas
     })
