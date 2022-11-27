@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
 
@@ -14,31 +13,49 @@
   <div class="row">
     <div class="col-md-5 offset-md-2 mt-4">
       <table class="table table_bordered">
+        {% for programa_Formacion in agendas %}
         <thead>
           <tr>
-            <td><strong>#</strong> </td>
-            <td><strong>Ficha</strong> </td>
-            <td><strong>Nombre del Programa</strong></td>
-            <td><strong>Centro de Formacion</strong></td>
-            <td><strong>Nombre del Instructor</strong></td>
-            <td><strong>Jornada</strong></td>
-            <td><strong>Inicio de Jornada</strong></td>
-            <td><strong>Finalizacion</strong></td>
-            <td><strong>Dias</strong></td>
+            <tr>
 
+              <th colspan="8">{{programa_Formacion.nombre_Programa}}-{{programa_Formacion.ficha}}-Trimestre-año</th>
+  
+          </tr>
           </tr>
         </thead>
-        <tbody>
-          {% for programa_Formacion in agendas %}
+        <thead>
           <tr>
-            <td>{{programa_Formacion.id}}</td>
-            <td>{{programa_Formacion.ficha}}</td>
-            <td>{{programa_Formacion.nombre_Programa}}</td>
-            <td>{{programa_Formacion.id_Centro_Formacion.nombre_Centro }}</td>
-            <td>{{programa_Formacion.id_Instructor.nombre }}</td>
-            <td>{{programa_Formacion.jornada }}</td>
-            <td>{{programa_Formacion.agenda.hora_Inicio }}</td>
-            <td>{{programa_Formacion.agenda.hora_Fin }}</td>
+
+            <th>Horario</th>
+
+            <th>Lunes</th>
+
+            <th>Martes</th>
+
+            <th>Miercoles</th>
+
+            <th>Jueves</th>
+
+            <th>Viernes</th>
+
+            <th>Sabado</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>{{programa_Formacion.agenda.hora_Inicio }} a {{programa_Formacion.agenda.hora_Fin }} Jornada {{programa_Formacion.jornada }}</td>
+            <td>{{programa_Formacion.agenda.dia_lunes.instructores_f }}</td>
+            <td>{{programa_Formacion.agenda.dia_martes.instructores_f }}</td>
+            <td>{{programa_Formacion.agenda.dia_miercoles.instructores_f }}</td>
+            <td>{{programa_Formacion.agenda.dia_jueves.instructores_f }}</td>
+            <td>{{programa_Formacion.agenda.dia_viernes.instructores_f }}</td>
+            <td>{{programa_Formacion.agenda.dia_sabado.instructores_f }}</td>
+            <td></td>
+            
+            <td></td>
             <td>{{programa_Formacion.agenda.asignacion.dias_Semana }}</td>
             </td>
           </tr>

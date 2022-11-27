@@ -1,4 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+
+
+{% endblock extra_css %}
 
 {% block content %}
 
@@ -23,7 +31,49 @@
 
 </section>
 
-<main class="container">
+<section class="card">
+  {% for programa_Formacion in programa %}
+  <div class="card__perfil">
+    
+      <div class="card__nombre">
+
+          <img src="{% static 'images/sena1.png' %}" alt="">
+          <h4><strong>{{programa_Formacion.nombre_Programa}}</strong></h4>
+          <h6><strong>{{programa_Formacion.tipo_Pograma}}</strong></h6>
+          
+      </div>
+      
+      <hr>
+      <td><a href="{% url 'editarPrograma' programa_Formacion.id %}" class="btn btn-secondary btn-sm mt-1">Editar</a>
+        <a href="{% url 'more_Agenda' programa_Formacion.id %}" class="btn btn-secondary btn-sm mt-1">Ver Horario</a>
+        <a href="{% url 'eliminarPrograma' programa_Formacion.id %}" class="btn btn-danger btn-sm mt-1">Eliminar</a>
+        
+
+      </td>
+      
+  </div>
+  {% endfor %}
+</section>
+
+
+<!-- <div class="row">
+  {% for programa_Formacion in programa %}
+  <div class="col-lg-2">
+    <img class="thumbnail" src="{{product.imagenUrl}}">
+    <div class="box-element product">
+      <h4><strong>{{programa_Formacion.nombre_Programa}}</strong></h4>
+      <h6><strong>{{programa_Formacion.nombre_Programa}}</strong></h6>
+      <hr>
+
+      
+    </div>
+  </div>
+  {% endfor %}
+</div> -->
+
+
+
+<!-- <main class="container">
   <div class="row">
     <div class="col-md-5 offset-md-2 mt-4">
       <table class="table table_bordered">
@@ -70,6 +120,6 @@
   
   </div>
 
-</main>
+</main> -->
 
 {% endblock %}
