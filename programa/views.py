@@ -3,7 +3,8 @@ from django.db.models import Q
 from .models import programa_Formacion, instructor
 from .filters import filtrarTrimestre
 from .forms import FormAmbiente,FormCentro,FormMunicipio,FormPrograma, FormInstructor
-
+from django.core.paginator import Paginator
+from django.http import Http404
 
 # def programa_formacion(request, programa_id):
 #     programa=get_object_or_404(programa_Formacion, pk=programa_id)
@@ -14,7 +15,12 @@ from .forms import FormAmbiente,FormCentro,FormMunicipio,FormPrograma, FormInstr
 def mostrar_programa_formacion(request):
     busqueda=request.POST.get("buscar")
     programa = programa_Formacion.objects.all()
-
+    page=request.GET.get('page',1)
+    try:
+        paginator=Paginator(programa, 1)
+        programa=paginator.page(page)
+    except:
+        raise Http404
     if busqueda:
         programa=programa_Formacion.objects.filter(
             Q(ficha__icontains = busqueda)|
@@ -23,7 +29,7 @@ def mostrar_programa_formacion(request):
         ).distinct()
 
     return render(request, 'programa_f.html',
-    {'programa': programa})
+    {'programa': programa, 'paginator':paginator})
 
 
 def filtrar_programa_formacion(request):

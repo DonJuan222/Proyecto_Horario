@@ -1,29 +1,23 @@
 {% extends 'base.html' %}
 
-
+{% load static %}
 {% block content %}
 
 <main class="container py-5">
     <section class="card card-body">
-        <h1 class="display-1 text-center"> Pagina Principal</h1>
-        
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae eius eum obcaecati, accusantium,
-            facilis quia sapiente assumenda excepturi voluptates dignissimos magnam natus libero fugiat possimus veniam?
-            Alias officiis, dolorem quos non laboriosam cumque, est ea laborum impedit temporibus aliquam vel eligendi
-            ab ipsum?
-            Est, nesciunt veritatis pariatur aut illum enim ipsam possimus odit saepe eaque. Explicabo veniam aperiam
-            dolorem
-            non
-            quaerat exercitationem quis deleniti a! Magni dignissimos obcaecati mollitia eaque laborum. Optio illum
-            provident,
-            veritatis et veniam quam consequuntur sunt expedita vel quae laborum est voluptate quaerat reprehenderit?
-            Minus excepturi non numquam eaque iure facilis fugit, odit alias dolores autem?</p>
-
+        <h1 class="text-center"><strong>Gestion de Horarios</strong></h1>
+        <br>
+        <h3 class="text-center">Software de Gestion de Horarios Sena <br>CTPI Sub Sede Santander De Quilichao</h3>
+        <br>
+        <div style="text-align:center;">
+            <img src="{% static 'images/Sena2.png' %}"  width="250px" height="200px" style="right: 100px;">
+            </div>
+            <br>
             <div class="text-center">
                 {% if user.is_authenticated %}
                 <a class="btn btn-dark" href="/programa/">Ver los programas</a>
                 <a class="btn btn-dark" href="/instructores/">Ver los Instructores</a>
-                <a class="btn btn-dark" href="/agenda/">Ver los Horarios</a>
+           
                 {% endif %}
                 
             </div>
