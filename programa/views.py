@@ -1,16 +1,10 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.db.models import Q
 from .models import programa_Formacion, instructor
-from .filters import filtrarTrimestre
 from .forms import FormAmbiente,FormCentro,FormMunicipio,FormPrograma, FormInstructor
 from django.core.paginator import Paginator
 from django.http import Http404
 
-# def programa_formacion(request, programa_id):
-#     programa=get_object_or_404(programa_Formacion, pk=programa_id)
-#     return render(request, 'programa_f.html',{
-#         'programa': programa
-#     })
 
 def mostrar_programa_formacion(request):
     busqueda=request.POST.get("buscar")
@@ -28,19 +22,12 @@ def mostrar_programa_formacion(request):
            
         ).distinct()
 
-    return render(request, 'programa_f.html',
+    return render(request, 'programa/programa_f.html',
     {'programa': programa, 'paginator':paginator})
-
-
-def filtrar_programa_formacion(request):
-    filtro=filtrarTrimestre(request.GET, queryset=programa_Formacion.objects.all())
-    return render(request, 'programa_f.html',
-    {'filtro':filtro} )
-
 
 def create_Programa(request):
     if request.method == 'GET':
-        return render(request, 'createPrograma.html',{
+        return render(request, 'programa/createPrograma.html',{
         'form': FormPrograma
     })
     else:
@@ -51,7 +38,7 @@ def create_Programa(request):
             return redirect('programa')
 
         except ValueError:
-            return render (request, 'createPrograma.html',{
+            return render (request, 'programa/createPrograma.html',{
                 'form': FormPrograma,
                 'error': 'Por favor proporciona los datos'
             })
@@ -69,7 +56,7 @@ def editarPrograma(request, programa_id):
             formulario.save()
             return redirect('programa')
         data['form']=formulario    
-    return render(request, 'programaUpdate.html', data)
+    return render(request, 'programa/programaUpdate.html', data)
 
 def eliminarPrograma(request, programa_id):
     programa=get_object_or_404(programa_Formacion, id=programa_id)
@@ -87,12 +74,12 @@ def mostrar_Instructores(request):
             Q(tipo_Instructor__icontains = busqueda)
         ).distinct()
 
-    return render(request, 'instructores.html',
+    return render(request, 'instructores/instructores.html',
     {'instructores': instructores} )
 
 def create_Instructor(request):
     if request.method == 'GET':
-        return render(request, 'createInstructores.html',{
+        return render(request, 'instructores/createInstructores.html',{
         'form': FormInstructor
     })
     else:
@@ -103,7 +90,7 @@ def create_Instructor(request):
             return redirect('instructores')
 
         except ValueError:
-            return render (request, 'createInstructores.html',{
+            return render (request, 'instructores/createInstructores.html',{
                 'form': FormInstructor,
                 'error': 'Por favor proporciona los datos'
             })
@@ -121,7 +108,7 @@ def editarInstructor(request, instructor_id):
             formulario.save()
             return redirect('instructores')
         data['form']=formulario    
-    return render(request, 'actualizarInstructores.html', data)
+    return render(request, 'instructores/actualizarInstructores.html', data)
 
 def eliminarInstructor(request, instructor_id):
     instructores=get_object_or_404(instructor, id=instructor_id)

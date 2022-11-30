@@ -31,10 +31,6 @@ INSTALLED_APPS = [
     'home',
     'programa',
     'agenda',
-
-
-    
-    'django_filters',
 ]
 
 MIDDLEWARE = [

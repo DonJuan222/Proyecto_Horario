@@ -47,6 +47,7 @@ class integracion(models.Model):
     
 
 class agenda(models.Model):
+    
     hora_Inicio= models.TimeField(null=True,blank=True, verbose_name='Hora de Inicio')
     hora_Fin= models.TimeField(null=True,blank=True, verbose_name='Hora fin')
     fecha_Creacion = models.DateTimeField(null=True,blank=True, verbose_name='Fecha de Creacion')

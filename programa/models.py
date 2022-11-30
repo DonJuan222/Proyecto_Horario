@@ -21,14 +21,14 @@ class centro_Formacion(models.Model):
         return self.nombre_Centro
 
 class programa_Formacion(models.Model):
-
+    
     ficha= models.IntegerField(blank=False,null=False, verbose_name='Ficha') 
     nombre_Programa=models.CharField(max_length=200,blank=False,null=False, verbose_name='Nombre del Programa')
     tipo_Pograma=models.ForeignKey(tipoPrograma,on_delete=models.CASCADE,max_length=200,blank=True,null=True, verbose_name='Tipo de Programa')
     jornada=models.CharField(max_length=200,blank=True,null=True, verbose_name='Jornada')
     id_Centro_Formacion=models.ForeignKey(centro_Formacion, on_delete=models.CASCADE, null=True,blank=True, verbose_name='Id de Centro de Formacion')
     id_Instructor=models.ForeignKey(instructor, on_delete=models.CASCADE, null=True,blank=True, verbose_name='Id del Instructor')
-    agenda=models.ForeignKey(agenda, on_delete=models.CASCADE, null=True,blank=True, verbose_name='Programa')
+    agenda=models.ForeignKey(agenda, on_delete=models.CASCADE, null=True,blank=True, verbose_name='Horario')
     class Meta:
 
         verbose_name='Programa de Formacion'
