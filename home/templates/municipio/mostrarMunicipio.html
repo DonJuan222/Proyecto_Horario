@@ -6,23 +6,10 @@
 
 
 <section class="col-md-3 offset-md-2 mt-3">
-  <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-  method="POST">
-    {% csrf_token %}
-    <div class="input-group">
-      <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." name="buscar" value="{{ request.POST.buscar }}">
-      <div class="input-group-append">
-        <button class="btn btn-dark" type="submit">
-          <i class="bi bi-search"> Buscar</i>
-        </button>
-      </div>
-    </div>
-    
-  </form>
   <div>
     <a href="/municipio/create/" class="btn btn-secondary btn-sm mt-2 offset-md-2"> Crear Municipio</a>
   </div>
-  </section>
+</section>
 
 <main class="container">
   <div class="row">
@@ -31,7 +18,6 @@
         <thead>
           <tr>
             <td><strong>Municipio</strong> </td>
-        
 
           </tr>
         </thead>
@@ -39,24 +25,23 @@
           {% for municipio in municipios %}
           <tr>
             <td>{{municipio.nom_municipio}}</td>
-          
+
 
             <td><a href="{% url 'editarMunicipio' municipio.id %}" class="btn btn-secondary btn-sm">Editar</a>
               <a href="{% url 'eliminarMunicipio' municipio.id %}" class="btn btn-danger btn-sm mt-1">Eliminar</a>
-              
+
 
             </td>
           </tr>
           {% endfor %}
-        
+
         </tbody>
       </table>
       <div>
-        {% include 'paginator.html' %}
       </div>
-      
+
     </div>
-  
+
   </div>
 
 </main>

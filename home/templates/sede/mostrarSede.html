@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<section class="col-md-3 offset-md-2 mt-3">
+  <div>
+    <a href="/sede/create/" class="btn btn-secondary btn-sm mt-2 offset-md-2"> Crear Sede</a>
+  </div>
+  </section>
+
+<main class="container">
+  <div class="row">
+    <div class="col-md-5 offset-md-2 mt-4">
+      <table class="table table_bordered">
+        <thead>
+          <tr>
+           
+            <td><strong>Sede</strong> </td>
+        
+          </tr>
+        </thead>
+        <tbody>
+          {% for sede in sedes %}
+          <tr>
+            <td>{{sede.nom_Sede}}</td>
+          
+
+            <td>
+              <a href="{% url 'editarSede' sede.id %}" class="btn btn-secondary btn-sm">Editar</a>
+              <a href="{% url 'eliminarSede' sede.id %}" class="btn btn-danger btn-sm mt-1">Eliminar</a>
+              
+            </td>
+        
+          </tr>
+          {% endfor %}
+        
+        </tbody>
+      </table>
+      <div>
+      </div>
+      
+    </div>
+  
+  </div>
+
+</main>
+
+{% endblock %}

@@ -13,4 +13,15 @@ class FormMunicipio(ModelForm):
         model = municipio
         fields ='__all__'
 
+class FormTipo(ModelForm):
+    class Meta:
+        model = tipoInstructor
+        fields ='__all__'
+
+class FormSede(ModelForm):
+    class Meta:
+        model = sede
+        fields ='__all__'
+
+
         

@@ -38,7 +38,7 @@
             <td><strong>Municipio</strong></td>
             <td><strong>Ambiente</strong></td>
             <td><strong>Sede</strong></td>
-            <td><strong>Nombre del Instructor</strong></td>
+            <td><strong>Instructor Lider</strong></td>
 
           </tr>
         </thead>
@@ -55,8 +55,9 @@
             <td>{{programa_Formacion.id_Centro_Formacion.sede }}</td>
             <td>{{programa_Formacion.id_Instructor.nombre }}</td>
 
-            <td><a href="{% url 'editarPrograma' programa_Formacion.id %}" class="btn btn-secondary btn-sm">Editar</a>
-              <a href="{% url 'more_Agenda' programa_Formacion.id %}" class="btn btn-secondary btn-sm mt-1">VerHorario</a>
+            <td>
+              <a href="{% url 'editarPrograma' programa_Formacion.id %}" class="btn btn-secondary btn-sm">Editar</a>
+              <a href="{% url 'more_Agenda' programa_Formacion.id %}" class="btn btn-secondary btn-sm mt-1">Horario</a>
               <a href="{% url 'eliminarPrograma' programa_Formacion.id %}" class="btn btn-danger btn-sm mt-1">Eliminar</a>
               
 

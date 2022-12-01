@@ -3,44 +3,65 @@
 
 {% block content %}
 
-<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-method="POST">
-  {% csrf_token %}
-  <div class="input-group">
-    <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." name="buscar" value="{{ request.POST.buscar }}">
-    <div class="input-group-append">
-      <button class="btn btn-primary" type="submit">
-        <i class="fas fa-search fa-sm"></i>
-      </button>
+  <section class="col-md-3 offset-md-3 mt-3">
+    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+    method="POST">
+      {% csrf_token %}
+      <div class="input-group">
+        <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." name="buscar" value="{{ request.POST.buscar }}">
+        <div class="input-group-append">
+          <button class="btn btn-dark" type="submit">
+            <i class="bi bi-search"> Buscar</i>
+          </button>
+        </div>
+      </div>
+      
+    </form>
+    <div>
+      <a href="/instructores/create/" class="btn btn-secondary btn-sm mt-2 offset-md-1"> Crear Instructor</a>
     </div>
-  </div>
-</form>
-
-
-<div class="row">
-
-    {% for instructor in instructores %}
-
-    <div class="col-lg-2">
-        <div class="box-element product">
-            <h2><strong>{{instructor.nombre}}</strong></h2>
-            <h2><strong>{{instructor.apellido}}</strong></h2>
-            <h2><strong>{{instructor.tipo_Instructor}}</strong></h2>
-            <td><a href="{% url 'editarInstructor' instructor.id %}" class="btn btn-secondary btn-sm">Editar</a>
-							<a href="{% url 'eliminarInstructor' instructor.id %}" class="btn btn-danger btn-sm">Eliminar</a></td>
-						
-           
-          </div>
+    <div>
+      <a href="/tipo/" class="btn btn-secondary btn-sm mt-2 offset-md-1"> Tipo de Instructores</a>
     </div>
-
-    {% endfor %}
-</div>
-<br>
-<section>
-  <div>
-    <a href="/instructores/create/" class="btn btn-secondary btn-sm"> Crear Instructores</a>
-  </div>
+    </section>
   
-  </section>
-
+  <main class="container">
+    <div class="row">
+      <div class="col-md-5 offset-md-3 mt-4">
+        <table class="table table_bordered">
+          <thead>
+            <tr>
+              <td><strong>Nombre de Instructor</strong> </td>
+              <td><strong>Apellido de Instructor</strong></td>
+              <td><strong>Tipo de Instructor</strong></td>
+              
+  
+            </tr>
+          </thead>
+          <tbody>
+            {% for instructor in instructores %}
+            <tr>
+              <td>{{instructor.nombre}}</td>
+              <td>{{instructor.apellido}}</td>
+              <td>{{instructor.tipoInstructor.tipo_Instructor}}</td>
+            
+              <td>
+                <a href="{% url 'editarInstructor' instructor.id %}" class="btn btn-secondary btn-sm">Editar</a>
+                <a href="{% url 'eliminarInstructor' instructor.id %}" class="btn btn-danger btn-sm mt-2">Eliminar</a>
+              </td>
+              
+            </tr>
+            {% endfor %}
+          
+          </tbody>
+        </table>
+        <div>
+          {% include 'paginator.html' %}
+        </div>
+        
+      </div>
+    
+    </div>
+  
+  </main>
 {%  endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<section class="col-md-3 offset-md-2 mt-3">
+  <div>
+    <a href="/centros/create/" class="btn btn-secondary btn-sm mt-2 offset-md-2"> Crear Centro</a>
+  </div>
+  <div >
+    <a href="{% url 'municipio' %}" class="btn btn-secondary btn-sm mt-2">Municipios</a>
+    <a href="{% url 'sede' %}" class="btn btn-secondary btn-sm mt-2">Sedes</a>
+    <a href="{% url 'ambiente' %}" class="btn btn-secondary btn-sm mt-2">Ambientes</a>
+  </div>
+  </section>
+
+<main class="container">
+  <div class="row">
+    <div class="col-md-5 offset-md-2 mt-4">
+      <table class="table table_bordered">
+        <thead>
+          <tr>
+           
+            <td><strong>Centro de Formacion</strong> </td>
+            <td><strong>Municipio</strong> </td>
+            <td><strong>Ambientes</strong> </td>
+            <td><strong>Sedes</strong> </td>
+        
+          </tr>
+        </thead>
+        <tbody>
+          {% for centro_Formacion in centros %}
+          <tr>
+            <td>{{centro_Formacion.nombre_Centro}}</td>
+            <td>{{centro_Formacion.id_Municipio}}</td>
+            <td>{{centro_Formacion.id_Ambiente}}</td>
+            <td>{{centro_Formacion.sede}}</td>
+          
+
+            <td>
+              <a href="{% url 'editarCentros' centro_Formacion.id %}" class="btn btn-secondary btn-sm">Editar</a>
+              <a href="{% url 'eliminarCentros' centro_Formacion.id %}" class="btn btn-danger btn-sm mt-1">Eliminar</a>
+              
+            </td>
+        
+          </tr>
+          {% endfor %}
+        
+        </tbody>
+      </table>
+      <div>
+      </div>
+      
+    </div>
+  
+  </div>
+
+</main>
+
+{% endblock %}
