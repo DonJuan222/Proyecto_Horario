@@ -33,7 +33,7 @@
       <nav class="navbar navbar-expand-md navbar-dark bg-dark border-3 border-bottom border-secondary">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">
-            <img src="{% static 'images/Sena3.png' %}" alt="Logo" width="80" height="60"
+            <img src="{% static 'images/Sena3.png' %}" alt="logo" width="140" height="90"
               class="d-inline-block align-text-top">
           </a>
           {% if user.is_authenticated %}
@@ -49,8 +49,10 @@
                 Programas de Formacion
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Programas</a></li>
-                <li><a class="dropdown-item" href="#">Tipos de Programa</a></li>
+                <li><a class="dropdown-item" href="/programa">Programas</a></li>
+                <li><a class="dropdown-item" href="/tipoprograma">Tipos de Programa</a></li>
+                <li><a class="dropdown-item" href="/asignar">Asignar Dias</a></li>
+                <li><a class="dropdown-item" href="/horario">Horario</a></li>
 
               </ul>
             </li>

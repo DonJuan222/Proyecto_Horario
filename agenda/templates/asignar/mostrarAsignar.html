@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<section class="col-md-3 offset-md-2 mt-3">
+  <div>
+    <a href="/asignar/create/" class="btn btn-secondary btn-sm mt-2 offset-md-2">Asignar Horario</a>
+    <a href="{% url 'programa' %}" class="btn btn-danger btn-sm mt-2">Volver</a>
+  </div>
+  </section>
+
+<main class="container">
+  <div class="row">
+    <div class="col-md-5 offset-md-2 mt-4">
+      <table class="table table_bordered">
+        <thead>
+          <tr>
+           
+            <td><strong>Instructores</strong> </td>
+            <td><strong>Dias</strong> </td>
+          
+        
+          </tr>
+        </thead>
+        <tbody>
+          {% for integracion in asignar %}
+          <tr>
+            <td>{{integracion.instructores_f}}</td>
+            <td>{{integracion.dias_s}}</td>
+                 
+
+            <td>
+              <a href="{% url 'editarAsignar' integracion.id %}" class="btn btn-secondary btn-sm">Editar</a>
+              <a href="{% url 'eliminarAsignar' integracion.id %}" class="btn btn-danger btn-sm mt-1">Eliminar</a>
+              
+            </td>
+        
+          </tr>
+          {% endfor %}
+        
+        </tbody>
+      </table>
+      <div>
+        {% include 'paginator.html' %}
+      </div>
+      
+    </div>
+  
+  </div>
+
+</main>
+
+{% endblock %}

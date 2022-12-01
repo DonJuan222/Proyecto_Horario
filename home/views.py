@@ -7,10 +7,12 @@ from home.models import ambiente,municipio,tipoInstructor,sede
 from django.core.paginator import Paginator
 from django.http import Http404
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 from .forms import FormAmbiente, FormMunicipio, FormTipo, FormSede
 
 
 # Create your views here.
+
 
 def home(request):
     return render(request, 'home.html')
@@ -29,7 +31,7 @@ def signup(request):
                                                 password=request.POST['password1'])
                 user.save()
                 login(request, user)
-                return redirect('/')
+                return redirect('/login')
             except IntegrityError:
                 return render(request, 'signup.html', {
                     'form': UserCreationForm,
@@ -65,7 +67,7 @@ def ingresar(request):
             return redirect('/')
 
 
-
+@login_required
 def mostrar_ambiente(request):
     busqueda=request.POST.get("buscar")
     ambientes = ambiente.objects.all()
@@ -84,6 +86,7 @@ def mostrar_ambiente(request):
     return render(request, 'ambiente/mostrarAmbiente.html',
     {'ambientes': ambientes, 'paginator':paginator})
 
+@login_required
 def create_Ambiente(request):
     if request.method == 'GET':
         return render(request, 'ambiente/crearAmbiente.html',{
@@ -102,6 +105,7 @@ def create_Ambiente(request):
                 'error': 'Por favor proporciona los datos'
             })
 
+@login_required
 def editarAmbiente(request, ambiente_id):
     ambientes=get_object_or_404(ambiente, id=ambiente_id)
 
@@ -117,18 +121,20 @@ def editarAmbiente(request, ambiente_id):
         data['form']=formulario    
     return render(request, 'ambiente/actualizarAmbiente.html', data)
 
+@login_required
 def eliminarAmbiente(request, ambiente_id):
     ambientes=get_object_or_404(ambiente, id=ambiente_id)
     ambientes.delete()
     return redirect('ambiente')
 
-
+@login_required
 def mostrar_Municipio(request):
     municipios = municipio.objects.all()
 
     return render(request, 'municipio/mostrarMunicipio.html',
     {'municipios': municipios})
 
+@login_required
 def create_Municipio(request):
     if request.method == 'GET':
         return render(request, 'municipio/crearMunicipio.html',{
@@ -147,6 +153,7 @@ def create_Municipio(request):
                 'error': 'Por favor proporciona los datos'
             })
 
+@login_required
 def editarMunicipio(request, municipio_id):
     municipios=get_object_or_404(municipio, id=municipio_id)
 
@@ -162,19 +169,21 @@ def editarMunicipio(request, municipio_id):
         data['form']=formulario    
     return render(request, 'municipio/actualizarMunucipio.html', data)
 
+@login_required
 def eliminarMunicipio(request, municipio_id):
     municipios=get_object_or_404(municipio, id=municipio_id)
     municipios.delete()
     return redirect('municipio')  
 
 
-
+@login_required
 def mostrar_Tipo(request):
     tipo=tipoInstructor.objects.all()
 
     return render(request, 'tipoinstructor/mostrarTipo.html',
     {'tipo': tipo })
 
+@login_required
 def createTipo(request):
     if request.method == 'GET':
         return render(request, 'tipoinstructor/createTipo.html',{
@@ -193,6 +202,7 @@ def createTipo(request):
                 'error': 'Por favor proporciona los datos'
             })
 
+@login_required
 def editarTipo(request, tipo_id):
     tipo=get_object_or_404(tipoInstructor, id=tipo_id)
 
@@ -208,18 +218,20 @@ def editarTipo(request, tipo_id):
         data['form']=formulario    
     return render(request, 'tipoinstructor/actualizarTipo.html', data)
 
+@login_required
 def eliminarTipo(request, tipo_id):
     instructores=get_object_or_404(tipoInstructor, id=tipo_id)
     instructores.delete()
     return redirect('tipo')
 
-
+@login_required
 def mostrar_Sede(request):
     sedes=sede.objects.all()
 
     return render(request, 'sede/mostrarSede.html',
     {'sedes': sedes })
 
+@login_required
 def createSede(request):
     if request.method == 'GET':
         return render(request, 'sede/createSede.html',{
@@ -238,6 +250,7 @@ def createSede(request):
                 'error': 'Por favor proporciona los datos'
             })
 
+@login_required
 def editarSede(request, sede_id):
     sedes=get_object_or_404(sede, id=sede_id)
 
@@ -253,6 +266,7 @@ def editarSede(request, sede_id):
         data['form']=formulario    
     return render(request, 'sede/actualizarSede.html', data)
 
+@login_required
 def eliminarSede(request, sede_id):
     instructores=get_object_or_404(sede, id=sede_id)
     instructores.delete()

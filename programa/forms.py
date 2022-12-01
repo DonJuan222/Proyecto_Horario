@@ -18,5 +18,10 @@ class FormInstructor(ModelForm):
         model = instructor
         fields ='__all__'
 
+class FormTipoPrograma(ModelForm):
+    class Meta:
+        model = tipoPrograma
+        fields ='__all__'
+
 
 

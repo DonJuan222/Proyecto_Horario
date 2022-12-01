@@ -6,13 +6,13 @@
     <div class="row">
         <section class="col-md-4 offset-md-4 mt-5">
             <form method="POST" class="card card-body">
-                <h2>Editar Horario</h2>
+                <h2>Editar Tipo de Programa</h2>
                 <hr>
                 {% csrf_token %}
                 {{form}}
                 <br>
                 <div class="d-flex justify-content-end">
-                    <a href="{% url 'mostrarHorario' %}" class="btn btn-danger ">Cancelar</a>
+                    <a href="{% url 'tipoprograma' %}" class="btn btn-danger ">Cancelar</a>
                     &nbsp;
                     <input type="submit" value="Editar" class="btn btn-secondary ">
                 </div>
