@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<section class="col-md-3 offset-md-2 mt-3">
+  <div>
+    <a href="/municipio/create/" class="btn btn-secondary btn-sm mt-2 offset-md-2"> Crear Municipio</a>
+  </div>
+</section>
+
+<main class="container">
+  <div class="row">
+    <div class="col-md-5 offset-md-2 mt-4">
+      <table class="table table_bordered">
+        <thead>
+          <tr>
+            <td><strong>Municipio</strong> </td>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for municipio in municipios %}
+          <tr>
+            <td>{{municipio.nom_municipio}}</td>
+
+
+            <td><a href="{% url 'editarMunicipio' municipio.id %}" class="btn btn-secondary btn-sm">Editar</a>
+              <a href="{% url 'eliminarMunicipio' municipio.id %}" class="btn btn-danger btn-sm mt-1">Eliminar</a>
+
+
+            </td>
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+      <div>
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+{% endblock %}

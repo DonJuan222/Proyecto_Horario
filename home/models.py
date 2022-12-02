@@ -13,6 +13,17 @@ class municipio(models.Model):
     def __str__(self):
         return self.nom_municipio
 
+class sede(models.Model):
+    nom_Sede=models.CharField(max_length=200,blank=False,null=False, verbose_name='Nombre de la Sede')
+
+    class Meta:
+        verbose_name='Sede'
+        verbose_name_plural='Sedes'
+     
+
+    def __str__(self):
+        return self.nom_Sede
+
 class ambiente(models.Model):
     nom_ambiente=models.CharField(max_length=200,blank=False,null=False, verbose_name='Nombre del ambiente ')
 
@@ -24,23 +35,35 @@ class ambiente(models.Model):
     def __str__(self):
         return self.nom_ambiente
 
-class horario(models.Model):
-    fecha_Inicio=models.DateField(null=False, verbose_name='Fecha de Inicio')
-    fecha_Fin=models.DateField(null=False, verbose_name='Fecha Fin')
-    hora_Inicio_Fin=models.CharField(max_length=200,blank=False,null=False, verbose_name='Hora de Inicio y Fin')
-    dias_Semana=models.CharField(max_length=200,blank=False,null=False, verbose_name='Dias semana')
-
+class tipoInstructor(models.Model):
+    tipo_Instructor=models.CharField(max_length=200,blank=False,null=False, verbose_name='Tipo de instructor')
     class Meta:
-        verbose_name='Horario'
-        verbose_name_plural='Horarios'
+        verbose_name='Tipo de Instructor'
+        verbose_name_plural='Tipo de Instructor'
+    
+
+    def __str__(self):
+        return self.tipo_Instructor
+
+class tipoPrograma(models.Model):
+    tipo_Programa=models.CharField(max_length=200,blank=False,null=False, verbose_name='Tipo de programa')
+    class Meta:
+        verbose_name='Tipo de Programa'
+        verbose_name_plural='Tipos de Programa'
+    
+
+    def __str__(self):
+        return self.tipo_Programa
 
 
 class instructor(models.Model):
     nombre=models.CharField(max_length=200,blank=False,null=False, verbose_name='Nombre del Instructor')
     apellido=models.CharField(max_length=200,blank=False,null=False, verbose_name='Apellido de instructor')
-    tipo_Instructor=models.CharField(max_length=200,blank=False,null=False, verbose_name='Tipo de instructor')
+    tipoInstructor=models.ForeignKey(tipoInstructor, on_delete=models.CASCADE, null=True,blank=True, verbose_name='Tipo de Instructor')
 
     class Meta:
         verbose_name='Instructor'
         verbose_name_plural='Instructores'
         
+    def __str__(self):
+        return self.nombre

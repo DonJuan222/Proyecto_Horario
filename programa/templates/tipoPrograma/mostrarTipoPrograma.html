@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<section class="col-md-3 offset-md-2 mt-3">
+  <div>
+    <a href="/tipoprograma/create/" class="btn btn-secondary btn-sm mt-2 offset-md-2"> Crear Tipo de Programa</a>
+  </div>
+  <div >
+    <a href="{% url 'programa' %}" class="btn btn-secondary btn-sm mt-2">Volver</a>
+  </div>
+  </section>
+
+<main class="container">
+  <div class="row">
+    <div class="col-md-5 offset-md-2 mt-4">
+      <table class="table table_bordered">
+        <thead>
+          <tr>          
+            <td><strong>Tipo de Programa</strong> </td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for tipoPrograma in tipoprograma %}
+          <tr>
+            <td>{{tipoPrograma.tipo_Programa}}</td> 
+            <td>
+              <a href="{% url 'editarTipoPrograma' tipoPrograma.id %}" class="btn btn-secondary btn-sm">Editar</a>
+              <a href="{% url 'eliminarTipoPrograma' tipoPrograma.id %}" class="btn btn-danger btn-sm mt">Eliminar</a>
+              
+            </td>
+        
+          </tr>
+          {% endfor %}
+        
+        </tbody>
+      </table>
+      <div>
+      </div>
+      
+    </div>
+  
+  </div>
+
+</main>
+
+{% endblock %}

@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 <main class="container">
     <div class="row">
         <section class="col-md-4 offset-md-4 mt-5">
             <form method="POST" class="card card-body">
-                <h1> Crear Programa de Formacion </h1>
+                <h1> Crear Centro de Formacion</h1>
                 {{error}}
             
                 {% csrf_token %}
@@ -17,9 +16,9 @@
                 </button>
             
             </form>
-            <button>
-                <a href="/programa/">Volver</a>
-            </button>
+            <div>
+                <a class="btn btn-danger btn-sm" href="/centros/">Volver</a>
+            </div>
             </form>
         </section>
     </div>

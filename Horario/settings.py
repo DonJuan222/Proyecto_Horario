@@ -1,6 +1,6 @@
-
-
+import os
 from pathlib import Path
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,9 +30,6 @@ INSTALLED_APPS = [
     'home',
     'programa',
     'agenda',
-
-    
-    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -72,7 +69,7 @@ WSGI_APPLICATION = 'Horario.wsgi.application'
 DATABASES = {
 'default':{
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'horario_db',
+        'NAME': 'Gestion_Horario_DB',
         'USER': 'root',
         'PASSWORD': 'SENAsamaria12',
         'HOST': '127.0.0.1',
@@ -115,8 +112,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
+
+
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,"static")
+]
+
+
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = reverse_lazy('programa')
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

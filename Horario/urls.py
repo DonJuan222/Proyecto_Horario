@@ -11,6 +11,4 @@ urlpatterns = [
 
     path('', include('agenda.urls')),
 
-
-
 ]

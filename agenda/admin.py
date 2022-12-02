@@ -1,12 +1,12 @@
 from django.contrib import admin
-
-# Register your models here.
 from .models import agenda
 
-# Register your models here.
+from .models import integracion
 
-
-
+# # Register your models here.
 admin.site.register(agenda)
+
+admin.site.register(integracion)
+
 
 

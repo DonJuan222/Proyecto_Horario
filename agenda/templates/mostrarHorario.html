@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<section class="col-md-3 offset-md-2 mt-3">
+  <div>
+    <a href="/horario/create/" class="btn btn-secondary btn-sm mt-2 offset-md-2">Crear Horario</a>
+    <a href="{% url 'programa' %}" class="btn btn-danger btn-sm mt-2">Volver</a>
+  </div>
+  </section>
+
+<main class="container">
+  <div class="row">
+    <div class="col-md-5 offset-md-2 mt-4">
+      <table class="table table_bordered">
+        <thead>
+          <tr>
+           
+            <td><strong>Hora de Inicio</strong> </td>
+            <td><strong>Hora de Finalizacion</strong> </td>
+            <td><strong>Fecha de Creacion</strong> </td>
+            <td><strong>Valido Hasta</strong> </td>
+        
+          </tr>
+        </thead>
+        <tbody>
+          {% for agenda in horarios %}
+          <tr>
+            <td>{{agenda.hora_Inicio}}</td>
+            <td>{{agenda.hora_Fin}}</td>
+            <td>{{agenda.fecha_Creacion}}</td>
+            <td>{{agenda.fecha_Vencimiento}}</td>      
+
+            <td>
+              <a href="{% url 'editarHorario' agenda.id %}" class="btn btn-secondary btn-sm">Editar</a>
+              <a href="{% url 'eliminarHorario' agenda.id %}" class="btn btn-danger btn-sm mt-1">Eliminar</a>
+              
+            </td>
+        
+          </tr>
+          {% endfor %}
+        
+        </tbody>
+      </table>
+      <div>
+        {% include 'paginator.html' %}
+      </div>
+      
+    </div>
+  
+  </div>
+
+</main>
+
+{% endblock %}

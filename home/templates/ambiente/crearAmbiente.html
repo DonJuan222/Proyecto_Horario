@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container">
+    <div class="row">
+        <section class="col-md-4 offset-md-4 mt-5">
+            <form method="POST" class="card card-body">
+                <h1> Crear Ambiente </h1>
+                {{error}}
+            
+                {% csrf_token %}
+            
+                {{form.as_p}}
+                <button>
+                    Guardar
+                </button>
+            
+            </form>
+            <div>
+                <a class="btn btn-danger btn-sm" href="/ambiente/">Volver</a>
+            </div>
+            <div>
+                <a class="btn btn-secondary btn-sm mt-1" href="/ambiente/create/">Tipo de Programa</a>
+            </div>
+            </form>
+        </section>
+    </div>
+</main>
+
+
+{% endblock %}
